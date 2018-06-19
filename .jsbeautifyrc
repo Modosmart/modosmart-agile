@@ -1,0 +1,120 @@
+{
+  "indent_size": 4,
+  "indent_char": " ",
+  "indent_level": 0,
+  "indent_with_tabs": false,
+  "preserve_newlines": true,
+  "max_preserve_newlines": 2,
+  "jslint_happy": true,
+  "js": {
+        "indent_size": 4,
+        "indent_char": " ",
+        "indent_level": 0,
+        "indent_with_tabs": false,
+        "preserve_newlines": true,
+        "max_preserve_newlines": 10,
+        "space_in_paren": false,
+        "jslint_happy": false,
+        "space_after_anon_function": false,
+        "brace_style": "collapse",
+        "break_chained_methods": false,
+        "keep_array_indentation": false,
+        "keep_function_indentation": false,
+        "space_before_conditional": true,
+        "eval_code": false,
+        "unescape_strings": false,
+        "wrap_line_length": 0,
+        "end_with_newline": false
+    },
+    "css": {
+        "indent_size": 4,
+        "indent_char": " ",
+        "selector_separator_newline": false,
+        "newline_between_rules": false
+    },
+    "html": {
+        "allowed_file_extensions": ["htm", "html", "xhtml", "shtml", "xml", "svg", "dust"],
+        "htmlbeautifier_path": "",
+        "indent_inner_html": false,
+        "indent_size": 4,
+        "indent_char": " ",
+        "brace_style": "collapse",
+        "indent_scripts": "normal",
+        "wrap_line_length": 250,
+        "wrap_attributes": "auto",
+        "wrap_attributes_indent_size": 2,
+        "preserve_newlines": true,
+        "max_preserve_newlines": 10,
+        "unformatted": [
+            "a",
+            "sub",
+            "sup",
+            "b",
+            "i",
+            "u"
+        ],
+        "end_with_newline": false
+    },
+    "sql": {
+        "indent_size": 2,
+        "keywords": "upper",
+        "identifiers": "lower",
+        "sqlformat_path": ""
+    },
+    "markdown": {
+        "pandoc_path": "",
+        "yaml_front_matter": true
+    },
+    "perl": {
+        "perltidy_path": "perltidy",
+        "perltidy_profile": ""
+    },
+    "php": {
+        "beautifier_path": "",
+        "filters": "",
+        "directory_filters": ""
+    },
+    "python": {
+        "autopep8_path": "",
+        "max_line_length": 79,
+        "indent_size": 2,
+        "ignore": [
+            "E24"
+        ]
+    },
+    "ruby": {
+        "rbeautify_path": ""
+    },
+    "c": {
+        "uncrustifyPath": "",
+        "configPath": ""
+    },
+    "cpp": {
+        "uncrustifyPath": "",
+        "configPath": ""
+    },
+    "objectivec": {
+        "uncrustifyPath": "",
+        "configPath": ""
+    },
+    "cs": {
+        "uncrustifyPath": "",
+        "configPath": ""
+    },
+    "d": {
+        "uncrustifyPath": "",
+        "configPath": ""
+    },
+    "java": {
+        "uncrustifyPath": "",
+        "configPath": ""
+    },
+    "pawn": {
+        "uncrustifyPath": "",
+        "configPath": ""
+    },
+    "vala": {
+        "uncrustifyPath": "",
+        "configPath": ""
+    }
+}
