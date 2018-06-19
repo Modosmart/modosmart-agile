@@ -4,12 +4,12 @@ var io = require('socket.io')();
 var agile = require('agile-sdk')({
     api: 'http://localhost:8080',
     idm: 'http://localhost:3000',
-    token: "myToken"
+    token: "token"
 });
 
-const TCP_HOST = '192.168.41.11';
-const TCP_PORT = 3310;
-const SOCKET_PORT = 3030;
+const TCP_HOST = '192.168.41.11';   // IP address of AC switch
+const TCP_PORT = 3310;              // The port of AC switch
+const SOCKET_PORT = 3030;           // The port of the serivce application
 
 var socket_connections = [];
 
