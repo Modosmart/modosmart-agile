@@ -11,3 +11,4 @@ This service is related to [agile-stack](https://github.com/mohamed-elsabagh/agi
 To run this application steps from [agile-stack](https://github.com/mohamed-elsabagh/agile-stack) should be followed.
 
 ### Architecture
+![Architecture](https://raw.githubusercontent.com/mohamed-elsabagh/modosmart-agile/master/resources/architecture.png)
