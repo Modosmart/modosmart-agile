@@ -4,15 +4,24 @@ WORKDIR /usr/src/app
 
 COPY package*.json ./
 COPY index.js index.js
+COPY build.sh build.sh
 
 RUN npm install
 
 # COPY . .
 
-CMD node index.js
-
 # Enable OpenRC
-ENV INITSYSTEM=on
+ENV INITSYSTEM on
+
+# IP address of TCP server
+ENV TCP_SERVER_IP 192.168.1.110
+# Port of TCP server
+ENV TCP_SERVER_PORT 3310
+# IP address of host machine
+ENV RESIN_HOST_IP 192.168.1.105
 
 # replace this with your application's default port
 EXPOSE 3030
+
+# CMD [ "npm", "start" ]
+CMD [ "bash", "/usr/src/app/start.sh" ]

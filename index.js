@@ -2,14 +2,14 @@ var net = require('net');
 var io = require('socket.io')();
 
 var agile = require('agile-sdk')({
-    api: 'http://localhost:8080',
-    idm: 'http://localhost:3000',
+    api: 'http://' + process.env.RESIN_HOST_IP + ':8080',
+    idm: 'http://' + process.env.RESIN_HOST_IP + ':3000',
     token: "token"
 });
 
-const TCP_HOST = '192.168.41.11';   // IP address of AC switch
-const TCP_PORT = 3310;              // The port of AC switch
-const SOCKET_PORT = 3030;           // The port of the serivce application
+const AC_SWITCH_IP = process.env.TCP_SERVER_IP;     // IP address of AC switch
+const AC_SWITCH_PORT = process.env.TCP_SERVER_PORT; // The port of AC switch
+const APPLICATION_PORT = 3030;                      // The port of the serivce application
 
 var socket_connections = [];
 
@@ -36,13 +36,18 @@ io.on('connection', function(socketio) {
         console.log('Disonnected %s sockets connected', socket_connections.length);
     });
 
+    socketio.on('test', function(test_data) {
+      // emit message back to socket client
+      io.sockets.emit('test_callback', test_data);
+    });
+
     socketio.on('intesis_message', function(io_data) {
         console.log(io_data);
         console.log(client.remoteAddress);
         if (!client.remoteAddress) {
             client = new net.Socket();
-            client.connect(TCP_PORT, TCP_HOST, function() {
-                console.log('CONNECTED TO: ' + TCP_HOST + ':' + TCP_PORT);
+            client.connect(AC_SWITCH_PORT, AC_SWITCH_IP, function() {
+                console.log('CONNECTED TO: ' + AC_SWITCH_IP + ':' + AC_SWITCH_PORT);
 
                 // Write a message to the socket as soon as the client is connected, the server will receive it as message from the client
                 client.write(io_data);
@@ -79,6 +84,8 @@ io.on('connection', function(socketio) {
             agile.protocolManager.devices().then(function(devices) {
                 // emit message back to socket client
                 io.sockets.emit('agile_scan_devices_callback', devices);
+            }).catch(function(err) {
+              console.log(err);
             });
         } else if (command == 'ConnectDevice') {
             let deviceId = agile_data.deviceId;
@@ -106,4 +113,4 @@ io.on('connection', function(socketio) {
         }
     });
 });
-io.listen(SOCKET_PORT);
+io.listen(APPLICATION_PORT);

@@ -60,7 +60,7 @@ static void gatts_profile_c_event_handler(esp_gatts_cb_event_t event, esp_gatt_i
 #define GATTS_DESCR_UUID_TEST_C                 0x2222
 #define GATTS_NUM_HANDLE_TEST_C                 4
 
-#define TEST_DEVICE_NAME            "MODOSMART_ROOM_SENSOR"
+#define TEST_DEVICE_NAME            "SM006"
 #define TEST_MANUFACTURER_DATA_LEN  17
 
 #define GATTS_DEMO_CHAR_VAL_LEN_MAX 0x40

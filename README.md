@@ -68,11 +68,19 @@ The three commands are:
 
 Assuming that Client application, Modosmart service application, and Modosmart AC switch are all connected to the same WiFi network, IP addresses and ports should be configured from Modosmart service application side for ensuring proper connection.
 
-on index.js file there are 1 values that should be configured
+on Dockerfile before building the image and running the container,
 ```
-const TCP_HOST = '192.168.41.11';
-const TCP_PORT = 3310;
+# IP address of TCP server
+ENV TCP_SERVER_IP 192.168.1.110
+# Port of TCP server
+ENV TCP_SERVER_PORT 3310
 ```
 
-TCP_HOST: is the IP address of the AC switch
-TCP_PORT: is the port of the AC switch
+TCP_SERVER_IP: is the IP address of the AC switch
+TCP_SERVER_PORT: is the port of the AC
+
+The IP address of gateway should be also configured to point to the host ip address (resin os)
+```
+# IP address of host machine
+ENV RESIN_HOST_IP 192.168.1.105
+```

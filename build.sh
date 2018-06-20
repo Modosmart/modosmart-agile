@@ -38,10 +38,14 @@ function publish {
 
 function run {
   echo "Running .."
-  clean
-	cd ${PROJECT_HOME} &&
+  # clean
+	npm install pm2 -g &&
+	# cd ${PROJECT_HOME} &&
   npm install &&
-  node index.js
+	pm2 start index.js
+	pm2 startup
+	pm2 save
+  # node index.js
 }
 
 if [ $# -eq 0 ]
