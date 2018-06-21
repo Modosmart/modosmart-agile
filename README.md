@@ -16,7 +16,7 @@ To run this application steps from [agile-stack](https://github.com/mohamed-elsa
 
 The previous figure, shows the full architecture of agile-stack running with ModoSmart service as containers over a docker engine running on the gateway (Raspberry pi).
 
-The ModoSmart service application exposes endpoints to be consumed using [socket-io](https://socket.io/) node library by any device which can communicate over socket-io such as Android devices, IOS devices, or web browsers.
+The ModoSmart service application exposes endpoints to be consumed using [socket-io](https://socket.io/) node library by any device which can communicate over socket-io such as Android devices, IOS devices, or web browsers (Those devices will be called client devices or client application).
 
 The commands sent over socket-io channel are then translated by the modosmart application into the equivalent Agile-IoT command and then using [agile-sdk](https://github.com/Agile-IoT/agile-sdk) the proper function is called from Agile-IoT framework and later the modosmart service will reply to the client with the output message.
 
