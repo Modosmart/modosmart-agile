@@ -11,9 +11,8 @@ const AC_SWITCH_IP = process.env.TCP_SERVER_IP;     // IP address of AC switch
 const AC_SWITCH_PORT = process.env.TCP_SERVER_PORT; // The port of AC switch
 const APPLICATION_PORT = 3030;                      // The port of the serivce application
 
-var socket_connections = [];
-
 var client = new net.Socket();
+var socket_connections = [];
 
 io.on('connection', function(socketio) {
     // Connection array to hold all client sockets
@@ -45,7 +44,10 @@ io.on('connection', function(socketio) {
         console.log(io_data);
         console.log(client.remoteAddress);
         if (!client.remoteAddress) {
+            io.sockets.emit('intesis_callback_log', 'Creating connection');
             client = new net.Socket();
+            console.log(AC_SWITCH_PORT);
+            console.log(AC_SWITCH_IP);
             client.connect(AC_SWITCH_PORT, AC_SWITCH_IP, function() {
                 console.log('CONNECTED TO: ' + AC_SWITCH_IP + ':' + AC_SWITCH_PORT);
 
@@ -58,6 +60,7 @@ io.on('connection', function(socketio) {
             client.on('data', function(sock_data) {
 
                 console.log('DATA: ' + sock_data);
+                io.sockets.emit('intesis_callback_log', 'DATA: ' + sock_data);
                 // Close the client socket completely
                 client.destroy();
                 // emit message back to socket client
@@ -69,12 +72,14 @@ io.on('connection', function(socketio) {
                 console.log('Connection closed');
             });
         } else {
+            io.sockets.emit('intesis_callback_log', 'Connection already established');
             client.write(io_data);
         }
 
     });
 
     socketio.on('intesis_disconnect', function() {
+        io.sockets.emit('intesis_callback_log', 'Destroying client');
         client.destroy();
     });
 
