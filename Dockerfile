@@ -15,7 +15,7 @@ RUN npm install
 ENV INITSYSTEM on
 
 # IP address of TCP server
-ENV TCP_SERVER_IP 192.168.41.11
+ENV TCP_SERVER_IP 192.168.1.65
 # Port of TCP server
 ENV TCP_SERVER_PORT 3310
 # IP address of host machine
