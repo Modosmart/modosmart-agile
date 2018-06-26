@@ -11,7 +11,6 @@ const AC_SWITCH_IP = process.env.TCP_SERVER_IP;     // IP address of AC switch
 const AC_SWITCH_PORT = process.env.TCP_SERVER_PORT; // The port of AC switch
 const APPLICATION_PORT = 3030;                      // The port of the serivce application
 
-var client = new net.Socket();
 var socket_connections = [];
 
 io.on('connection', function(socketio) {
@@ -42,23 +41,20 @@ io.on('connection', function(socketio) {
 
     socketio.on('intesis_message', function(io_data) {
         console.log(io_data);
-        console.log(client.remoteAddress);
+        var client = new net.Socket();
         if (!client.remoteAddress) {
-            io.sockets.emit('intesis_callback_log', 'Creating connection');
-            client = new net.Socket();
-            console.log(AC_SWITCH_PORT);
-            console.log(AC_SWITCH_IP);
             client.connect(AC_SWITCH_PORT, AC_SWITCH_IP, function() {
                 console.log('CONNECTED TO: ' + AC_SWITCH_IP + ':' + AC_SWITCH_PORT);
 
                 // Write a message to the socket as soon as the client is connected, the server will receive it as message from the client
                 client.write(io_data);
             });
-
+            console.log(AC_SWITCH_PORT);
+            console.log(AC_SWITCH_IP);
+            io.sockets.emit('intesis_callback_log', 'Creating connection');
             // Add a 'data' event handler for the client socket
             // data is what the server sent to this socket
             client.on('data', function(sock_data) {
-
                 console.log('DATA: ' + sock_data);
                 io.sockets.emit('intesis_callback_log', 'DATA: ' + sock_data);
                 // Close the client socket completely
@@ -78,10 +74,10 @@ io.on('connection', function(socketio) {
 
     });
 
-    socketio.on('intesis_disconnect', function() {
-        io.sockets.emit('intesis_callback_log', 'Destroying client');
-        client.destroy();
-    });
+    // socketio.on('intesis_disconnect', function() {
+    //     io.sockets.emit('intesis_callback_log', 'Destroying client');
+    //     client.destroy();
+    // });
 
     socketio.on('agile', function(agile_data) {
         let command = agile_data.command;
@@ -111,6 +107,9 @@ io.on('connection', function(socketio) {
         } else if (command == 'readingDevice') {
             let deviceId = agile_data.deviceId;
             let componentId = agile_data.componentId;
+            console.log(command);
+            console.log(deviceId);
+            console.log(componentId);
             agile.device.get(deviceId, componentId).then(function(deviceComponent) {
                 // emit message back to socket client
                 io.sockets.emit('agile_reading_device_callback', deviceComponent);

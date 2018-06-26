@@ -15,11 +15,11 @@ RUN npm install
 ENV INITSYSTEM on
 
 # IP address of TCP server
-ENV TCP_SERVER_IP 192.168.1.65
+ENV TCP_SERVER_IP 192.168.1.119
 # Port of TCP server
 ENV TCP_SERVER_PORT 3310
 # IP address of host machine
-ENV RESIN_HOST_IP 192.168.1.63
+ENV RESIN_HOST_IP 192.168.1.113
 
 # replace this with your application's default port
 EXPOSE 3030

@@ -1,7 +1,7 @@
 var agile = require('agile-sdk')({
-  api: 'http://resin.local:8080',
-  idm: 'http://resin.local:3000',
-  token: "NPH7YIi2tPpXlzwzJIOnjsrvyu8pv8fwOpmKI6yml8JzQtMXACO3d2QUcWKz2izL"
+  api: 'http://192.168.1.63:8080',
+  idm: 'http://192.168.1.63:3000',
+  token: "token"
 });
 
 agile.protocolManager.discovery.start()
@@ -12,29 +12,35 @@ agile.protocolManager.discovery.start()
   console.log(err)
 });
 
-agile.protocolManager.devices().then(function(devices) {
- console.log(devices);
-});
+// agile.protocolManager.devices().then(function(devices) {
+//  console.log(devices);
+// });
+//
+// agile.deviceManager.get('bleD94298C99EF2').then(function(device) {
+//   console.log(device);
+// }).catch(function(err) {
+//   console.log(err)
+// });
+//
+// agile.device.get('bleD94298C99EF2', 'Temperature').then(function(deviceComponent) {
+//   console.log(deviceComponent);
+// }).catch(function(err) {
+//   console.log(err)
+// });
 
-agile.deviceManager.get('ble240AC405E9EA').then(function(device) {
-  console.log(device);
-}).catch(function(err) {
-  console.log(err)
-});
-
-agile.device.get('ble240AC405E9EA', 'Temperature').then(function(deviceComponent) {
-  console.log(deviceComponent);
-}).catch(function(err) {
-  console.log(err)
-});
-
-// agile.device.connect('ble240AC405E9EA').then(function() {
+// agile.device.connect('bleD94298C99EF2').then(function() {
 //     console.log('Connected!');
 // }).catch(function(err) {
 //   console.log(err);
 // });
 
 
-// agile.device.status('ble240AC405E9EA').then(function(status) {
-//  console.log(status);
-// });
+agile.device.status('bleD4DB5788634C').then(function(status) {
+  console.log('Window sensor');
+  console.log(status);
+});
+
+agile.device.status('bleD94298C99EF2').then(function(status) {
+  console.log('Room sensor');
+  console.log(status);
+});
